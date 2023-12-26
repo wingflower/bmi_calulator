@@ -1,5 +1,4 @@
 import 'package:bmi_calulator/main/main_screen.dart';
-import 'package:bmi_calulator/routes.dart';
 import 'package:flutter/material.dart';
 
 
@@ -12,15 +11,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: router,
-    // return MaterialApp(
+    // return MaterialApp.router(
+    //   routerConfig: router,
+    return MaterialApp(
       title: 'Flutter BMI Calculator',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      // home: const MainScreen(),
+      home: const MainScreen(),
     );
   }
 }
