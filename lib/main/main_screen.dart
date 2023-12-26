@@ -60,73 +60,60 @@ class _MainScreenState extends State<MainScreen> {
               Image.asset('assets/images/body_fat.png'),
               Form(
                 key: _formKey,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Expanded(
-                        flex: 7,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            TextFormField(
-                              controller: _heightController,
-                              decoration: const InputDecoration(
-                                border: OutlineInputBorder(),
-                                hintText: '키',
-                              ),
-                              keyboardType: TextInputType.number,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return '키를 입력하세요';
-                                }
-                                return null;
-                              },
-                            ),
-                            const SizedBox(height: 8),
-                            TextFormField(
-                              controller: _weightController,
-                              decoration: const InputDecoration(
-                                border: OutlineInputBorder(),
-                                hintText: '몸무게',
-                              ),
-                              keyboardType: TextInputType.number,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return '몸무게를 입력하세요';
-                                }
-                                return null;
-                              },
-                            ),
-                            const SizedBox(height: 8),
-                          ],
-                        ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    TextFormField(
+                      controller: _heightController,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        hintText: '키',
                       ),
-                      const SizedBox(width: 10),
-                      IntrinsicHeight(
-                        child: Expanded(
-                          flex: 3,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              if (_formKey.currentState?.validate() == false) {
-                                return;
-                              }
-                              save();
-                              context.push(
-                                Uri(
-                                  path: '/result',
-                                  queryParameters: {
-                                    'height': _heightController.text,
-                                    'weight': _weightController.text,
-                                  },
-                                ).toString(),
-                              );
+                      keyboardType: TextInputType.number,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return '키를 입력하세요';
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(height: 8),
+                    TextFormField(
+                      controller: _weightController,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        hintText: '몸무게',
+                      ),
+                      keyboardType: TextInputType.number,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return '몸무게를 입력하세요';
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(height: 8),
+                    ElevatedButton(
+                      onPressed: () {
+                        if (_formKey.currentState?.validate() == false) {
+                          return;
+                        }
+
+                        save();
+
+                        context.push(
+                          Uri(
+                            path: '/result',
+                            queryParameters: {
+                              'height': _heightController.text,
+                              'weight': _weightController.text,
                             },
-                            child: const Text('결과'),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                          ).toString(),
+                        );
+                      },
+                      child: const Text('결과'),
+                    ),
+                  ],
                 ),
               ),
             ],
