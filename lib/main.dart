@@ -1,6 +1,7 @@
 import 'package:bmi_calulator/main/main_screen.dart';
+import 'package:bmi_calulator/routes.dart';
 import 'package:flutter/material.dart';
-import 'routes.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       routerConfig: router,
+    // return MaterialApp(
       title: 'Flutter BMI Calculator',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),

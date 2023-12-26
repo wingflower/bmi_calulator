@@ -27,17 +27,23 @@ class ResultScreen extends StatelessWidget {
   }
 
   Widget _buildIcon(double bmi) {
-    Icon icon = const Icon(Icons.sentiment_dissatisfied,
+    Icon icon = const Icon(
+      Icons.sentiment_dissatisfied,
       color: Colors.green,
-      size: 100,);
+      size: 100,
+    );
     if (bmi >= 23) {
-      icon = const Icon(Icons.sentiment_very_dissatisfied,
+      icon = const Icon(
+        Icons.sentiment_very_dissatisfied,
         color: Colors.green,
-        size: 100,);
+        size: 100,
+      );
     } else if (bmi >= 18.5) {
-      icon = const Icon(Icons.sentiment_satisfied,
+      icon = const Icon(
+        Icons.sentiment_satisfied,
         color: Colors.green,
-        size: 100,);
+        size: 100,
+      );
     }
     return icon;
   }
@@ -45,24 +51,19 @@ class ResultScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bmi = weight / ((height / 100) * (height / 100));
+    print(bmi);
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('결과'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              _calcBmi(bmi),
-              // '정상',
-              style: TextStyle(fontSize: 36),
-            ),
-            _buildIcon(bmi),
-          ],
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Text(
+          _calcBmi(bmi),
+          // '정상',
+          style: const TextStyle(fontSize: 36),
         ),
-      ),
+        _buildIcon(bmi),
+      ],
     );
   }
 }

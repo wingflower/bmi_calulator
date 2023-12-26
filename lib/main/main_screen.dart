@@ -1,7 +1,5 @@
 import 'package:bmi_calulator/result/result_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MainScreen extends StatefulWidget {
@@ -136,6 +134,9 @@ class _MainScreenState extends State<MainScreen> {
                             return;
                           }
                           save();
+                          setState(() {
+
+                          });
                         },
                         child: const Text(
                           '결과',
@@ -151,7 +152,9 @@ class _MainScreenState extends State<MainScreen> {
                 ),
               ),
             ),
-            Container(
+            ResultScreen(
+              height: double.parse(_heightController.text),
+              weight: double.parse(_weightController.text),
             )
           ],
         ),
