@@ -50,74 +50,110 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('비만도 계산기'),
+        title: const Text(
+          '비만도 계산기',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Container(
-          child: ListView(
-            children: [
-              Image.asset('assets/images/body_fat.png'),
-              Form(
-                key: _formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
+        child: ListView(
+          children: [
+            Image.asset('assets/images/body_fat.png'),
+            Form(
+              key: _formKey,
+              child: IntrinsicHeight(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    TextFormField(
-                      controller: _heightController,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: '키',
-                      ),
-                      keyboardType: TextInputType.number,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return '키를 입력하세요';
-                        }
-                        return null;
-                      },
-                    ),
-                    const SizedBox(height: 8),
-                    TextFormField(
-                      controller: _weightController,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: '몸무게',
-                      ),
-                      keyboardType: TextInputType.number,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return '몸무게를 입력하세요';
-                        }
-                        return null;
-                      },
-                    ),
-                    const SizedBox(height: 8),
-                    ElevatedButton(
-                      onPressed: () {
-                        if (_formKey.currentState?.validate() == false) {
-                          return;
-                        }
-
-                        save();
-
-                        context.push(
-                          Uri(
-                            path: '/result',
-                            queryParameters: {
-                              'height': _heightController.text,
-                              'weight': _weightController.text,
+                    Expanded(
+                      flex: 7,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          TextFormField(
+                            controller: _heightController,
+                            decoration: const InputDecoration(
+                              border: OutlineInputBorder(),
+                              hintText: '키',
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(15),
+                                ),
+                                borderSide: BorderSide(
+                                  color: Colors.lightBlueAccent,
+                                ),
+                              ),
+                            ),
+                            keyboardType: TextInputType.number,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return '키를 입력하세요';
+                              }
+                              return null;
                             },
-                          ).toString(),
-                        );
-                      },
-                      child: const Text('결과'),
+                          ),
+                          const SizedBox(height: 8),
+                          TextFormField(
+                            controller: _weightController,
+                            decoration: const InputDecoration(
+                              border: OutlineInputBorder(),
+                              hintText: '몸무게',
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(15),
+                                ),
+                                borderSide: BorderSide(
+                                  color: Colors.lightBlueAccent,
+                                ),
+                              ),
+                            ),
+                            keyboardType: TextInputType.number,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return '몸무게를 입력하세요';
+                              }
+                              return null;
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      flex: 3,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.lightBlueAccent,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                        ),
+                        onPressed: () {
+                          if (_formKey.currentState?.validate() == false) {
+                            return;
+                          }
+                          save();
+                        },
+                        child: const Text(
+                          '결과',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
                     ),
                   ],
                 ),
               ),
-            ],
-          ),
+            ),
+            Container(
+            )
+          ],
         ),
       ),
     );
